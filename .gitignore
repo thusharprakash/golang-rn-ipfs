@@ -33,6 +33,8 @@ local.properties
 .cxx/
 *.keystore
 !debug.keystore
+core.aar
+core-sources.jar
 
 # node.js
 #
