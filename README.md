@@ -13,8 +13,9 @@ iOS support will be added soon
 You need
 
 1. Golang 1.18 installed
-2. For Android, Make sure NDK version 23.1.7779620 is installed.
-3. Add below configurations to your `.zshrc` or `.bashrc` file
+2. Java 17 or higher installed.
+3. For Android, Make sure NDK version 23.1.7779620 is installed.
+4. Add below configurations to your `.zshrc` or `.bashrc` file
 
 ```
 macOS
