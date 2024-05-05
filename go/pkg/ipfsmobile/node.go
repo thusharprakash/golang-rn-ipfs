@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net"
 
-	orbitdb "berty.tech/go-orbit-db"
+	"berty.tech/go-orbit-db/iface"
 	ipfs_oldcmds "github.com/ipfs/kubo/commands"
 	ipfs_core "github.com/ipfs/kubo/core"
 	ipfs_core_api "github.com/ipfs/kubo/core/coreapi"
@@ -14,6 +14,7 @@ import (
 	p2p_host "github.com/libp2p/go-libp2p/core/host"
 )
 
+var appOrbitDb iface.EventLogStore 
 
 type IpfsConfig struct {
 	HostConfig *HostConfig
@@ -92,6 +93,10 @@ func (im *IpfsMobile) ServeGateway(l net.Listener, writable bool, opts ...ipfs_c
 	return ipfs_corehttp.Serve(im.IpfsNode, l, opts...)
 }
 
+func GetOrbitDb() iface.EventLogStore {
+	return appOrbitDb
+}
+
 func NewNode(ctx context.Context, cfg *IpfsConfig) (*IpfsMobile, error) {
 	if err := cfg.fillDefault(); err != nil {
 		return nil, fmt.Errorf("invalid configurations: %w", err)
@@ -125,11 +130,13 @@ func NewNode(ctx context.Context, cfg *IpfsConfig) (*IpfsMobile, error) {
 	 }
  
 	 // create an instance of OrbitDB
-	 odb, err := orbitdb.NewOrbitDB(ctx, coreAPI, &orbitdb.NewOrbitDBOptions{})
-	 if err != nil {
-		 return nil, fmt.Errorf("failed to init orbitdb: %s", err)
+	 odb, err  := CreateOrbitDb(ctx,coreAPI)
+
+	 if(err != nil){
+		 return nil, fmt.Errorf("failed to init OrbitDB: %s", err)
+	 }else{
+		appOrbitDb = odb
 	 }
-	 fmt.Println("OrbitDB created ==> ", odb)
 
 	// @TODO: no sure about how to init this, must be another way
 	cctx := ipfs_oldcmds.Context{

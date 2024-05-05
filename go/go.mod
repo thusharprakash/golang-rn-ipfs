@@ -255,4 +255,5 @@ require (
 replace (
 	github.com/multiformats/go-multiaddr => github.com/gfanton/go-multiaddr v0.7.1-0.20221109002011-e39b3a49e793 // tmp, required for Android SDK30
 	golang.org/x/mobile => github.com/berty/mobile v0.0.9 // temporary, see https://github.com/golang/mobile/pull/58 and https://github.com/golang/mobile/pull/82
+	github.com/ipfs-shipyard/gomobile-ipfs/go => ../go
 )
