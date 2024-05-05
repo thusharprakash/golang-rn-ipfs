@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"net"
 
+	orbitdb "berty.tech/go-orbit-db"
 	ipfs_oldcmds "github.com/ipfs/kubo/commands"
 	ipfs_core "github.com/ipfs/kubo/core"
+	ipfs_core_api "github.com/ipfs/kubo/core/coreapi"
 	ipfs_corehttp "github.com/ipfs/kubo/core/corehttp"
 	ipfs_p2p "github.com/ipfs/kubo/core/node/libp2p"
 	p2p_host "github.com/libp2p/go-libp2p/core/host"
@@ -108,16 +110,26 @@ func NewNode(ctx context.Context, cfg *IpfsConfig) (*IpfsMobile, error) {
 		ExtraOpts:                   cfg.ExtraOpts,
 	}
 
-	fmt.Println("Hi Athul from mobile node")
-	fmt.Println("printing host2w")
-	fmt.Printf("%+v\n",buildcfg)
-
 	// create ipfs node
 	inode, err := ipfs_core.NewNode(ctx, buildcfg)
-	if err != nil {
-		// unlockRepo(repoPath)
-		return nil, fmt.Errorf("failed to init ipfs node: %s", err)
-	}
+		if err != nil {
+			// unlockRepo(repoPath)
+			return nil, fmt.Errorf("failed to init ipfs node: %s", err)
+		}
+
+	 // get the CoreAPI instance from the IPFS node
+	 coreAPI, err := ipfs_core_api.NewCoreAPI(inode)
+
+	 if err != nil {
+		 return nil, fmt.Errorf("failed to get CoreAPI from IPFS node: %s", err)
+	 }
+ 
+	 // create an instance of OrbitDB
+	 odb, err := orbitdb.NewOrbitDB(ctx, coreAPI, &orbitdb.NewOrbitDBOptions{})
+	 if err != nil {
+		 return nil, fmt.Errorf("failed to init orbitdb: %s", err)
+	 }
+	 fmt.Println("OrbitDB created ==> ", odb)
 
 	// @TODO: no sure about how to init this, must be another way
 	cctx := ipfs_oldcmds.Context{
