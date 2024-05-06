@@ -24,7 +24,11 @@ func NewOrbitDB()(*OrbitDb){
 	return &odb
 }
 
-func(ob *OrbitDb) StartSubscription() {
+type MessageCallback interface {
+    OnMessage(string)
+}
+
+func(ob *OrbitDb) StartSubscription(callback MessageCallback) {
 	go func (){
 		var ctx = context.Background()
 		eventsChan := ob.db.Subscribe(ctx)
@@ -70,6 +74,7 @@ func(ob *OrbitDb) StartSubscription() {
 			ob.eventsMutex.Lock()
 			ob.events = append(ob.events, string(decodedValue))
 			ob.eventsMutex.Unlock()
+			callback.OnMessage(string(decodedValue))
 			log.Println("Received event:", e.Entry, pt, e.Address, string(decodedValue))
 
 		case <-ctx.Done():

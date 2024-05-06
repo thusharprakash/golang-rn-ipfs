@@ -4,14 +4,23 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.WritableNativeMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.rngomobileipfs.ipfs.IPFSManager;
+
+import core.Core;
+import core.OrbitDb;
+import core.MessageCallback;
 
 public class IPFSModule extends ReactContextBaseJavaModule {
 
+    OrbitDb db;
     ReactApplicationContext context;
     IPFSModule(ReactApplicationContext context){
         super(context);
@@ -26,13 +35,37 @@ public class IPFSModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void start(Callback callBack){
         PermissionChecker.INSTANCE.checkPermissions(getCurrentActivity());
-        Log.e("ATHUL","Permission checked");
-
         IPFSManager.INSTANCE.startIpfs(context);
         new Thread(()->{
             String address = IPFSManager.INSTANCE.getPeerAddress();
+            this.db = Core.newOrbitDB();
             callBack.invoke(address);
         }).start();
+    }
+
+    @ReactMethod
+    public void startSubscription(){
+        if(this.db!=null){
+            this.db.startSubscription(new MessageCallback() {
+                @Override
+                public void onMessage(String s) {
+                    WritableMap map = Arguments.createMap();
+                    map.putString("message",s);
+                    context
+                            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                            .emit("ORBITDB", map);
+                }
+            });
+        }
+    }
+
+    @ReactMethod
+    public void sendMessage(String message){
+        if(this.db!=null){
+           new Thread(()->{
+               db.sendEvents(message.getBytes());
+           }).start();
+        }
     }
 
 }

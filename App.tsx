@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -15,6 +15,9 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
+  TextInput,
+  NativeEventEmitter,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -54,17 +57,40 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const [message, setMessage] = useState<string>('');
+  const [messages, setMessages] = useState<string[]>([]);
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const [peerid, setPeerid] = React.useState<string>(null);
+  const [peerid, setPeerid] = React.useState<string | null>(null);
 
+  const sendMessage = () => {
+    IPFSModule.sendMessage(message);
+    setMessage('');
+  };
+
+  useEffect(() => {
+    const emitter = new NativeEventEmitter(IPFSModule);
+    let listener = emitter.addListener('ORBITDB', handleEvent);
+
+    return () => {
+      listener.remove();
+    };
+  }, []);
+
+  const handleEvent = data => {
+    console.log('Got message', data.message);
+    setMessages(prevMessages => [...prevMessages, data.message]);
+  };
   useEffect(() => {
     IPFSModule.start(id => {
       setPeerid(id);
+      IPFSModule.startSubscription();
     });
   }, []);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -83,6 +109,18 @@ function App(): React.JSX.Element {
               ? 'Generating peerID. Please allow permissions'
               : `PeerID: ${peerid}`}
           </Section>
+          <View>
+            {messages.map((msg, index) => (
+              <Text key={index}>{msg}</Text>
+            ))}
+            <TextInput
+              value={message}
+              onChangeText={setMessage}
+              placeholder="Type your message here..."
+              style={styles.textInput}
+            />
+            <Button title="Send" onPress={sendMessage} />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -90,6 +128,13 @@ function App(): React.JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  textInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    maxWidth: 400,
+    marginTop: 40,
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
