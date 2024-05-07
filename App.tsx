@@ -59,6 +59,7 @@ function App(): React.JSX.Element {
 
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<string[]>([]);
+  const [peers, setPeers] = useState<string[]>([]);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -74,6 +75,25 @@ function App(): React.JSX.Element {
   useEffect(() => {
     const emitter = new NativeEventEmitter(IPFSModule);
     let listener = emitter.addListener('ORBITDB', handleEvent);
+
+    return () => {
+      listener.remove();
+    };
+  }, []);
+
+  useEffect(() => {
+    const emitter = new NativeEventEmitter(IPFSModule);
+    let listener = emitter.addListener('PEERS', data => {
+      try {
+        setPeers(
+          (JSON.parse(data.peers) as any[]).map(
+            peer => peer.Peer + '=====>' + peer.Addr,
+          ),
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    });
 
     return () => {
       listener.remove();
@@ -120,6 +140,12 @@ function App(): React.JSX.Element {
               style={styles.textInput}
             />
             <Button title="Send" onPress={sendMessage} />
+          </View>
+          <View>
+            <Text> Connected Peers are,</Text>
+            {peers.map((msg, index) => (
+              <Text key={index}>{msg}</Text>
+            ))}
           </View>
         </View>
       </ScrollView>

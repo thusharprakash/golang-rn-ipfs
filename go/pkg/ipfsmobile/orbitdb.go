@@ -27,6 +27,6 @@ func CreateOrbitDb(ctx context.Context,coreApi coreapi.CoreAPI) (iface.EventLogS
 		),
 	}
 
-	db, err := odb.Log(ctx, "test_db", options)
+	db, err := odb.Log(ctx, "sponeglare123ew2343904", options)
 	return db,err
 }

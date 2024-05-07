@@ -13,6 +13,10 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.rngomobileipfs.ipfs.IPFSManager;
+import com.rngomobileipfs.ipfs.PeerCallback;
+import com.rngomobileipfs.ipfs.PeerCounter;
+
+import org.json.JSONArray;
 
 import core.Core;
 import core.OrbitDb;
@@ -54,6 +58,16 @@ public class IPFSModule extends ReactContextBaseJavaModule {
                     context
                             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                             .emit("ORBITDB", map);
+                }
+            });
+            PeerCounter.INSTANCE.start(new PeerCallback() {
+                @Override
+                public void onData(@NonNull JSONArray array) {
+                    WritableMap map = Arguments.createMap();
+                    map.putString("peers",array.toString());
+                    context
+                            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                            .emit("PEERS", map);
                 }
             });
         }
