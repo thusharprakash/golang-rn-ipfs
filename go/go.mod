@@ -3,9 +3,11 @@ module github.com/ipfs-shipyard/gomobile-ipfs/go
 go 1.18
 
 require (
+	berty.tech/go-orbit-db v1.18.0
 	github.com/ipfs/go-datastore v0.6.0
 	github.com/ipfs/go-ipfs-api v0.3.0
 	github.com/ipfs/go-ipfs-files v0.1.1
+	github.com/ipfs/interface-go-ipfs-core v0.7.0
 	github.com/ipfs/kubo v0.16.0
 	github.com/libp2p/go-libp2p v0.23.3
 	github.com/libp2p/go-libp2p-record v0.2.0
@@ -20,7 +22,6 @@ require (
 require (
 	bazil.org/fuse v0.0.0-20200117225306-7b5117fecadc // indirect
 	berty.tech/go-ipfs-log v1.9.0 // indirect
-	berty.tech/go-orbit-db v1.18.0 // indirect
 	contrib.go.opencensus.io/exporter/prometheus v0.4.0 // indirect
 	github.com/AndreasBriese/bbloom v0.0.0-20190825152654-46b345b51c96 // indirect
 	github.com/Stebalien/go-bitfield v0.0.1 // indirect
@@ -122,7 +123,6 @@ require (
 	github.com/ipfs/go-unixfs v0.4.0 // indirect
 	github.com/ipfs/go-unixfsnode v1.4.0 // indirect
 	github.com/ipfs/go-verifcid v0.0.2 // indirect
-	github.com/ipfs/interface-go-ipfs-core v0.7.0 // indirect
 	github.com/ipfs/tar-utils v0.0.2 // indirect
 	github.com/ipld/edelweiss v0.2.0 // indirect
 	github.com/ipld/go-car v0.4.0 // indirect
@@ -140,8 +140,8 @@ require (
 	github.com/libp2p/go-doh-resolver v0.4.0 // indirect
 	github.com/libp2p/go-flow-metrics v0.1.0 // indirect
 	github.com/libp2p/go-libp2p-asn-util v0.2.0 // indirect
+	github.com/libp2p/go-libp2p-blankhost v0.3.0 // indirect
 	github.com/libp2p/go-libp2p-core v0.20.1 // indirect
-	github.com/libp2p/go-libp2p-discovery v0.7.0 // indirect
 	github.com/libp2p/go-libp2p-gostream v0.3.0 // indirect
 	github.com/libp2p/go-libp2p-http v0.2.1 // indirect
 	github.com/libp2p/go-libp2p-kad-dht v0.18.0 // indirect
@@ -253,7 +253,7 @@ require (
 )
 
 replace (
+	github.com/ipfs-shipyard/gomobile-ipfs/go => ../go
 	github.com/multiformats/go-multiaddr => github.com/gfanton/go-multiaddr v0.7.1-0.20221109002011-e39b3a49e793 // tmp, required for Android SDK30
 	golang.org/x/mobile => github.com/berty/mobile v0.0.9 // temporary, see https://github.com/golang/mobile/pull/58 and https://github.com/golang/mobile/pull/82
-	github.com/ipfs-shipyard/gomobile-ipfs/go => ../go
 )
