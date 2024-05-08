@@ -13,6 +13,30 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1878E1F72BE9F1A700FC057F /* IPFSModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878E1F62BE9F1A700FC057F /* IPFSModule.m */; };
+		18F609B32BEB0FB80008B11E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F609B22BEB0FB80008B11E /* CoreBluetooth.framework */; };
+		18F609B52BEB14C10008B11E /* Core.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F609B42BEB14C00008B11E /* Core.xcframework */; };
+		18F609DF2BEB1D800008B11E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D62BEB1D7F0008B11E /* Config.swift */; };
+		18F609E02BEB1D800008B11E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D62BEB1D7F0008B11E /* Config.swift */; };
+		18F609E12BEB1D800008B11E /* InputStreamToGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D72BEB1D7F0008B11E /* InputStreamToGo.swift */; };
+		18F609E22BEB1D800008B11E /* InputStreamToGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D72BEB1D7F0008B11E /* InputStreamToGo.swift */; };
+		18F609E32BEB1D800008B11E /* IPFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D82BEB1D7F0008B11E /* IPFS.swift */; };
+		18F609E42BEB1D800008B11E /* IPFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D82BEB1D7F0008B11E /* IPFS.swift */; };
+		18F609E52BEB1D800008B11E /* InputStreamFromGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D92BEB1D7F0008B11E /* InputStreamFromGo.swift */; };
+		18F609E62BEB1D800008B11E /* InputStreamFromGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D92BEB1D7F0008B11E /* InputStreamFromGo.swift */; };
+		18F609E72BEB1D800008B11E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DA2BEB1D7F0008B11E /* Error.swift */; };
+		18F609E82BEB1D800008B11E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DA2BEB1D7F0008B11E /* Error.swift */; };
+		18F609E92BEB1D800008B11E /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DB2BEB1D800008B11E /* Repo.swift */; };
+		18F609EA2BEB1D800008B11E /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DB2BEB1D800008B11E /* Repo.swift */; };
+		18F609EB2BEB1D800008B11E /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DC2BEB1D800008B11E /* Node.swift */; };
+		18F609EC2BEB1D800008B11E /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DC2BEB1D800008B11E /* Node.swift */; };
+		18F609ED2BEB1D800008B11E /* SockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DD2BEB1D800008B11E /* SockManager.swift */; };
+		18F609EE2BEB1D800008B11E /* SockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DD2BEB1D800008B11E /* SockManager.swift */; };
+		18F609EF2BEB1D800008B11E /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DE2BEB1D800008B11E /* RequestBuilder.swift */; };
+		18F609F02BEB1D800008B11E /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609DE2BEB1D800008B11E /* RequestBuilder.swift */; };
+		18F609F32BEB364A0008B11E /* IPFSInterOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609F22BEB364A0008B11E /* IPFSInterOp.swift */; };
+		18F609F42BEB364A0008B11E /* IPFSInterOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609F22BEB364A0008B11E /* IPFSInterOp.swift */; };
+		18F609F62BEB3E6C0008B11E /* OrbitDbMessageCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609F52BEB3E6C0008B11E /* OrbitDbMessageCallback.swift */; };
+		18F609F72BEB3E6C0008B11E /* OrbitDbMessageCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609F52BEB3E6C0008B11E /* OrbitDbMessageCallback.swift */; };
 		7699B88040F8A987B510C191 /* libPods-RNGoMobileIPFS-RNGoMobileIPFSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-RNGoMobileIPFS-RNGoMobileIPFSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		BA0834EE744FF5FA43793866 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 43BE7D64966F83A43DB015FB /* PrivacyInfo.xcprivacy */; };
@@ -41,6 +65,20 @@
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = RNGoMobileIPFS/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1878E1F52BE9F1A700FC057F /* IPFSModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPFSModule.h; sourceTree = "<group>"; };
 		1878E1F62BE9F1A700FC057F /* IPFSModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPFSModule.m; sourceTree = "<group>"; };
+		18F609B22BEB0FB80008B11E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		18F609B42BEB14C00008B11E /* Core.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Core.xcframework; path = RNGoMobileIPFS/Core.xcframework; sourceTree = "<group>"; };
+		18F609D62BEB1D7F0008B11E /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		18F609D72BEB1D7F0008B11E /* InputStreamToGo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStreamToGo.swift; sourceTree = "<group>"; };
+		18F609D82BEB1D7F0008B11E /* IPFS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPFS.swift; sourceTree = "<group>"; };
+		18F609D92BEB1D7F0008B11E /* InputStreamFromGo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStreamFromGo.swift; sourceTree = "<group>"; };
+		18F609DA2BEB1D7F0008B11E /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		18F609DB2BEB1D800008B11E /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
+		18F609DC2BEB1D800008B11E /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		18F609DD2BEB1D800008B11E /* SockManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SockManager.swift; sourceTree = "<group>"; };
+		18F609DE2BEB1D800008B11E /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		18F609F12BEB2DE50008B11E /* RNGoMobileIPFS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNGoMobileIPFS-Bridging-Header.h"; sourceTree = "<group>"; };
+		18F609F22BEB364A0008B11E /* IPFSInterOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPFSInterOp.swift; sourceTree = "<group>"; };
+		18F609F52BEB3E6C0008B11E /* OrbitDbMessageCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitDbMessageCallback.swift; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-RNGoMobileIPFS-RNGoMobileIPFSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNGoMobileIPFS-RNGoMobileIPFSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-RNGoMobileIPFS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNGoMobileIPFS.debug.xcconfig"; path = "Target Support Files/Pods-RNGoMobileIPFS/Pods-RNGoMobileIPFS.debug.xcconfig"; sourceTree = "<group>"; };
 		43BE7D64966F83A43DB015FB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = RNGoMobileIPFS/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -65,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F609B52BEB14C10008B11E /* Core.xcframework in Frameworks */,
+				18F609B32BEB0FB80008B11E /* CoreBluetooth.framework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-RNGoMobileIPFS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +132,15 @@
 		13B07FAE1A68108700A75B9A /* RNGoMobileIPFS */ = {
 			isa = PBXGroup;
 			children = (
+				18F609D62BEB1D7F0008B11E /* Config.swift */,
+				18F609DA2BEB1D7F0008B11E /* Error.swift */,
+				18F609D92BEB1D7F0008B11E /* InputStreamFromGo.swift */,
+				18F609D72BEB1D7F0008B11E /* InputStreamToGo.swift */,
+				18F609D82BEB1D7F0008B11E /* IPFS.swift */,
+				18F609DC2BEB1D800008B11E /* Node.swift */,
+				18F609DB2BEB1D800008B11E /* Repo.swift */,
+				18F609DE2BEB1D800008B11E /* RequestBuilder.swift */,
+				18F609DD2BEB1D800008B11E /* SockManager.swift */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -102,6 +151,9 @@
 				43BE7D64966F83A43DB015FB /* PrivacyInfo.xcprivacy */,
 				1878E1F52BE9F1A700FC057F /* IPFSModule.h */,
 				1878E1F62BE9F1A700FC057F /* IPFSModule.m */,
+				18F609F12BEB2DE50008B11E /* RNGoMobileIPFS-Bridging-Header.h */,
+				18F609F22BEB364A0008B11E /* IPFSInterOp.swift */,
+				18F609F52BEB3E6C0008B11E /* OrbitDbMessageCallback.swift */,
 			);
 			name = RNGoMobileIPFS;
 			sourceTree = "<group>";
@@ -109,6 +161,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18F609B42BEB14C00008B11E /* Core.xcframework */,
+				18F609B22BEB0FB80008B11E /* CoreBluetooth.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-RNGoMobileIPFS.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-RNGoMobileIPFS-RNGoMobileIPFSTests.a */,
@@ -213,10 +267,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 1430;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -395,7 +450,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F609EA2BEB1D800008B11E /* Repo.swift in Sources */,
+				18F609F42BEB364A0008B11E /* IPFSInterOp.swift in Sources */,
 				00E356F31AD99517003FC87E /* RNGoMobileIPFSTests.m in Sources */,
+				18F609F72BEB3E6C0008B11E /* OrbitDbMessageCallback.swift in Sources */,
+				18F609E02BEB1D800008B11E /* Config.swift in Sources */,
+				18F609EC2BEB1D800008B11E /* Node.swift in Sources */,
+				18F609E22BEB1D800008B11E /* InputStreamToGo.swift in Sources */,
+				18F609F02BEB1D800008B11E /* RequestBuilder.swift in Sources */,
+				18F609E62BEB1D800008B11E /* InputStreamFromGo.swift in Sources */,
+				18F609EE2BEB1D800008B11E /* SockManager.swift in Sources */,
+				18F609E82BEB1D800008B11E /* Error.swift in Sources */,
+				18F609E42BEB1D800008B11E /* IPFS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,9 +469,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F609E72BEB1D800008B11E /* Error.swift in Sources */,
+				18F609EB2BEB1D800008B11E /* Node.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				18F609EF2BEB1D800008B11E /* RequestBuilder.swift in Sources */,
+				18F609ED2BEB1D800008B11E /* SockManager.swift in Sources */,
+				18F609E32BEB1D800008B11E /* IPFS.swift in Sources */,
+				18F609E92BEB1D800008B11E /* Repo.swift in Sources */,
+				18F609DF2BEB1D800008B11E /* Config.swift in Sources */,
+				18F609E12BEB1D800008B11E /* InputStreamToGo.swift in Sources */,
 				1878E1F72BE9F1A700FC057F /* IPFSModule.m in Sources */,
+				18F609F32BEB364A0008B11E /* IPFSInterOp.swift in Sources */,
+				18F609F62BEB3E6C0008B11E /* OrbitDbMessageCallback.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				18F609E52BEB1D800008B11E /* InputStreamFromGo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +501,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-RNGoMobileIPFS-RNGoMobileIPFSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -443,6 +522,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RNGoMobileIPFSTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNGoMobileIPFS.app/RNGoMobileIPFS";
 			};
 			name = Debug;
@@ -451,7 +533,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-RNGoMobileIPFS-RNGoMobileIPFSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = RNGoMobileIPFSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -467,6 +551,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RNGoMobileIPFSTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RNGoMobileIPFS.app/RNGoMobileIPFS";
 			};
 			name = Release;
@@ -492,6 +578,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNGoMobileIPFS;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -518,6 +605,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNGoMobileIPFS;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -556,6 +644,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CXX = "";
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
@@ -636,6 +725,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				CXX = "";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
