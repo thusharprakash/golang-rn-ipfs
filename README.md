@@ -6,8 +6,6 @@ This project aims to bring IPFS support in Mobile Apps (Via React Native as F.E)
 
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-iOS support will be added soon
-
 ## Building Golang SDK
 
 You need
@@ -44,6 +42,12 @@ Now, to run the Android App,
 
 ```
 ./installAndroid.sh
+```
+
+Now, to run the iOS App,
+
+```
+./buildiOS.sh
 ```
 
 ## Start the Metro Server
