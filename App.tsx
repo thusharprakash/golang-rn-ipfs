@@ -32,6 +32,9 @@ function App() {
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? '#333' : '#FFF',
+  };
+
+  const textColor = {
     color: isDarkMode ? '#FFF' : '#333',
   };
 
@@ -142,10 +145,14 @@ function App() {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(!modalVisible)}>
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Connected Peers:</Text>
+          <View
+            style={[
+              styles.modalView,
+              {backgroundColor: isDarkMode ? '#555' : '#fff'},
+            ]}>
+            <Text style={[styles.modalText, textColor]}>Connected Peers:</Text>
             {peers.map((peer, index) => (
-              <Text key={index} style={styles.modalText}>
+              <Text key={index} style={[styles.modalText, textColor]}>
                 {peer}
               </Text>
             ))}
@@ -193,7 +200,6 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -209,7 +215,6 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
-    color: '#000',
   },
   buttonClose: {
     backgroundColor: '#2196F3',
@@ -229,22 +234,6 @@ const styles = StyleSheet.create({
   },
   peerText: {
     fontSize: 16,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
   },
 });
 
