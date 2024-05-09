@@ -74,5 +74,5 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
+.yarnrc.yml
 Core.xcframework/
