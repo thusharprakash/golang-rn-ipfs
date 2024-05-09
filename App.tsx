@@ -1,118 +1,108 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, {useEffect, useState} from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
-  Button,
-  TextInput,
+  TouchableOpacity,
+  Modal,
   NativeEventEmitter,
+  useColorScheme,
 } from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Buffer} from 'buffer';
+global.Buffer = Buffer; // Ensure Buffer is available globally
+
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NativeModules} from 'react-native';
 const {IPFSModule} = NativeModules;
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+import {generateOrder, updateOrder} from './utils';
+import {computeOrderState} from '@oolio-group/order-helper';
+import OrderCard from './orderCard';
 
-function Section({children, title}: SectionProps): React.JSX.Element {
+function App() {
   const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const [message, setMessage] = useState<string>('');
-  const [messages, setMessages] = useState<string[]>([]);
-  const [peers, setPeers] = useState<string[]>([]);
+  const [orders, setOrders] = useState({});
+  const [lastProcessedEventIds, setLastProcessedEventIds] = useState(new Map());
+  const [modalVisible, setModalVisible] = useState(false);
+  const [peers, setPeers] = useState([]);
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  const [peerid, setPeerid] = React.useState<string | null>(null);
-
-  const sendMessage = () => {
-    IPFSModule.sendMessage(message);
-    setMessage('');
+    backgroundColor: isDarkMode ? '#333' : '#FFF',
+    color: isDarkMode ? '#FFF' : '#333',
   };
 
   useEffect(() => {
     const emitter = new NativeEventEmitter(IPFSModule);
-    let listener = emitter.addListener('ORBITDB', handleEvent);
-
-    return () => {
-      listener.remove();
-    };
-  }, []);
-
-  useEffect(() => {
-    const emitter = new NativeEventEmitter(IPFSModule);
-    let listener = emitter.addListener('PEERS', data => {
-      try {
-        setPeers(
-          (JSON.parse(data.peers) as any[]).map(
-            peer => peer.Peer + '=====>' + peer.Addr,
-          ),
-        );
-      } catch (e) {
-        console.log(e);
-      }
+    const orderListener = emitter.addListener('ORBITDB', handleReceivedData);
+    const peersListener = emitter.addListener('PEERS', data => {
+      setPeers(
+        JSON.parse(data.peers).map(peer => `${peer.Peer} ===> ${peer.Addr}`),
+      );
     });
 
-    return () => {
-      listener.remove();
-    };
-  }, []);
-
-  const handleEvent = data => {
-    console.log('Got message', data.message);
-    setMessages(prevMessages => [...prevMessages, data.message]);
-  };
-  useEffect(() => {
     IPFSModule.start(id => {
-      setPeerid(id);
+      console.log(`Started with PeerID: ${id}`);
       IPFSModule.startSubscription();
     });
+
+    return () => {
+      orderListener.remove();
+      peersListener.remove();
+    };
   }, []);
 
+  const handleReceivedData = data => {
+    const message = Buffer.from(data.message, 'hex').toString();
+    const orderData = JSON.parse(message);
+    console.log('Received order data:', orderData);
+
+    setOrders(prevOrders => {
+      const prevOrder = prevOrders[orderData.orderId];
+      const newOrder = computeOrderState(
+        orderData.events,
+        prevOrder || undefined,
+      );
+      console.log('Previous order:', prevOrder);
+      console.log('New order:', newOrder);
+
+      return {...prevOrders, [orderData.orderId]: newOrder};
+    });
+
+    setLastProcessedEventIds(prevEventIds => {
+      const lastEventId = orderData.events[orderData.events.length - 1].id;
+      return new Map(prevEventIds).set(orderData.orderId, lastEventId);
+    });
+  };
+
+  const createOrder = index => {
+    const newOrderEvents = generateOrder(index);
+    const message = Buffer.from(
+      JSON.stringify({
+        orderId: newOrderEvents[0].orderId,
+        events: newOrderEvents,
+      }),
+    ).toString('hex');
+    IPFSModule.sendMessage(message);
+  };
+
+  const updateOrderEvent = orderId => {
+    const lastEventId = lastProcessedEventIds.get(orderId);
+    const updatedEvents = updateOrder(orderId, lastEventId);
+    const message = Buffer.from(
+      JSON.stringify({
+        orderId: orderId,
+        events: updatedEvents,
+      }),
+    ).toString('hex');
+    IPFSModule.sendMessage(message);
+  };
+
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={[styles.container, backgroundStyle]}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
@@ -120,46 +110,125 @@ function App(): React.JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="GoMobile IPFS">
-            {peerid === null
-              ? 'Generating peerID. Please allow permissions'
-              : `PeerID: ${peerid}`}
-          </Section>
-          <View>
-            {messages.map((msg, index) => (
-              <Text key={index}>{msg}</Text>
+        {Object.entries(orders).map(([id, order]) => (
+          <OrderCard
+            key={id}
+            order={order}
+            onUpdateOrder={() => updateOrderEvent(id)}
+            lastProcessedEventIds={lastProcessedEventIds}
+          />
+        ))}
+      </ScrollView>
+      <View style={styles.buttonContainer}>
+        {Array.from({length: 3}).map((_, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.iconButton}
+            onPress={() => createOrder(index)}>
+            <Icon name="plus-box" size={20} color="#fff" />
+            <Text style={styles.iconText}>Create Order {index + 1}</Text>
+          </TouchableOpacity>
+        ))}
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => setModalVisible(true)}>
+          <Icon name="account-multiple" size={20} color="#fff" />
+          <Text style={styles.iconText}>Show Peers</Text>
+        </TouchableOpacity>
+      </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(!modalVisible)}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Connected Peers:</Text>
+            {peers.map((peer, index) => (
+              <Text key={index} style={styles.modalText}>
+                {peer}
+              </Text>
             ))}
-            <TextInput
-              value={message}
-              onChangeText={setMessage}
-              placeholder="Type your message here..."
-              style={styles.textInput}
-            />
-            <Button title="Send" onPress={sendMessage} />
-          </View>
-          <View>
-            <Text> Connected Peers are,</Text>
-            {peers.map((msg, index) => (
-              <Text key={index}>{msg}</Text>
-            ))}
+            <TouchableOpacity
+              style={styles.buttonClose}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
+      </Modal>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    maxWidth: 400,
-    marginTop: 40,
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    marginTop: 20,
+  },
+  iconButton: {
+    flexDirection: 'row',
+    backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 5,
+  },
+  iconText: {
+    color: '#fff',
+    marginLeft: 5,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    color: '#000',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  peersContainer: {
+    backgroundColor: '#FFF',
+    padding: 20,
+    borderRadius: 10,
+  },
+  peerText: {
+    fontSize: 16,
   },
   sectionContainer: {
     marginTop: 32,

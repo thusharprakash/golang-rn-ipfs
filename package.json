@@ -10,8 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@oolio-group/order-helper": "^6.7.34",
     "react": "18.2.0",
-    "react-native": "0.74.1"
+    "react-native": "0.74.1",
+    "react-native-uuid": "^2.0.2",
+    "react-native-vector-icons": "^10.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
