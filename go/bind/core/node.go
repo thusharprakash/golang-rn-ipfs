@@ -109,13 +109,8 @@ func NewNode(r *Repo, config *NodeConfig) (*Node, error) {
 		},
 	}
 
-	cfg, err := r.mr.Config()
-	if err != nil {
-		panic(err)
-	}
-
 	mdnsLocked := false
-	if cfg.Discovery.MDNS.Enabled && config.mdnsLockerDriver != nil {
+	if config.mdnsLockerDriver != nil {
 		config.mdnsLockerDriver.Lock()
 		mdnsLocked = true
 
