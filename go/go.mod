@@ -3,7 +3,7 @@ module github.com/ipfs-shipyard/gomobile-ipfs/go
 go 1.18
 
 require (
-	berty.tech/go-orbit-db v1.18.0
+	berty.tech/go-orbit-db v0.0.0-00010101000000-000000000000
 	github.com/ipfs/go-datastore v0.6.0
 	github.com/ipfs/go-ipfs-api v0.3.0
 	github.com/ipfs/go-ipfs-files v0.1.1
@@ -253,6 +253,7 @@ require (
 )
 
 replace (
+	berty.tech/go-orbit-db => ./go-orbit-db // temporary, see
 	github.com/elastic/gosigar => github.com/birros/gosigar v0.14.2-fix-ios
 	github.com/ipfs-shipyard/gomobile-ipfs/go => ../go
 	github.com/multiformats/go-multiaddr => github.com/gfanton/go-multiaddr v0.7.1-0.20221109002011-e39b3a49e793 // tmp, required for Android SDK30
