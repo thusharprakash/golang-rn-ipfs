@@ -24,6 +24,11 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>UIAppFonts</key>
+  <array>
+      <string>MaterialCommunityIcons.ttf</string> <!-- Ensure the font file name matches -->
+  </array>
+
   <key>NSBluetoothAlwaysUsageDescription</key>
   <string>Your app uses Bluetooth to connect to devices.</string>
 	<key>NSAppTransportSecurity</key>
