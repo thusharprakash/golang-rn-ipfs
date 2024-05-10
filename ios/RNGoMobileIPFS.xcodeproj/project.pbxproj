@@ -14,7 +14,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1878E1F72BE9F1A700FC057F /* IPFSModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1878E1F62BE9F1A700FC057F /* IPFSModule.m */; };
 		18F609B32BEB0FB80008B11E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F609B22BEB0FB80008B11E /* CoreBluetooth.framework */; };
-		18F609B52BEB14C10008B11E /* Core.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F609B42BEB14C00008B11E /* Core.xcframework */; };
 		18F609DF2BEB1D800008B11E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D62BEB1D7F0008B11E /* Config.swift */; };
 		18F609E02BEB1D800008B11E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D62BEB1D7F0008B11E /* Config.swift */; };
 		18F609E12BEB1D800008B11E /* InputStreamToGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609D72BEB1D7F0008B11E /* InputStreamToGo.swift */; };
@@ -39,6 +38,7 @@
 		18F609F72BEB3E6C0008B11E /* OrbitDbMessageCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F609F52BEB3E6C0008B11E /* OrbitDbMessageCallback.swift */; };
 		7699B88040F8A987B510C191 /* libPods-RNGoMobileIPFS-RNGoMobileIPFSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-RNGoMobileIPFS-RNGoMobileIPFSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9E735E702BECAAAF0078F60A /* Core.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E735E6F2BECAAAF0078F60A /* Core.xcframework */; };
 		BA0834EE744FF5FA43793866 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 43BE7D64966F83A43DB015FB /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,6 @@
 		1878E1F52BE9F1A700FC057F /* IPFSModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPFSModule.h; sourceTree = "<group>"; };
 		1878E1F62BE9F1A700FC057F /* IPFSModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPFSModule.m; sourceTree = "<group>"; };
 		18F609B22BEB0FB80008B11E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		18F609B42BEB14C00008B11E /* Core.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Core.xcframework; path = RNGoMobileIPFS/Core.xcframework; sourceTree = "<group>"; };
 		18F609D62BEB1D7F0008B11E /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		18F609D72BEB1D7F0008B11E /* InputStreamToGo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputStreamToGo.swift; sourceTree = "<group>"; };
 		18F609D82BEB1D7F0008B11E /* IPFS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPFS.swift; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-RNGoMobileIPFS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNGoMobileIPFS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RNGoMobileIPFS/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-RNGoMobileIPFS-RNGoMobileIPFSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNGoMobileIPFS-RNGoMobileIPFSTests.release.xcconfig"; path = "Target Support Files/Pods-RNGoMobileIPFS-RNGoMobileIPFSTests/Pods-RNGoMobileIPFS-RNGoMobileIPFSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E735E6F2BECAAAF0078F60A /* Core.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Core.xcframework; path = RNGoMobileIPFS/Core.xcframework; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18F609B52BEB14C10008B11E /* Core.xcframework in Frameworks */,
+				9E735E702BECAAAF0078F60A /* Core.xcframework in Frameworks */,
 				18F609B32BEB0FB80008B11E /* CoreBluetooth.framework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-RNGoMobileIPFS.a in Frameworks */,
 			);
@@ -161,7 +161,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				18F609B42BEB14C00008B11E /* Core.xcframework */,
+				9E735E6F2BECAAAF0078F60A /* Core.xcframework */,
 				18F609B22BEB0FB80008B11E /* CoreBluetooth.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-RNGoMobileIPFS.a */,
@@ -564,6 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BRLH95UCS;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RNGoMobileIPFS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -578,9 +579,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNGoMobileIPFS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -592,6 +596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BRLH95UCS;
 				INFOPLIST_FILE = RNGoMobileIPFS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -605,8 +610,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNGoMobileIPFS;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -685,7 +693,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -758,7 +769,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
