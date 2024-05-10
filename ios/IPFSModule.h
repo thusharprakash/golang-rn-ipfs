@@ -7,5 +7,7 @@
 
 //  RCTCalendarModule.h
 #import <React/RCTBridgeModule.h>
-@interface IPFSModule : NSObject <RCTBridgeModule>
+#import <React/RCTEventEmitter.h>
+
+@interface IPFSModule : RCTEventEmitter <RCTBridgeModule>
 @end

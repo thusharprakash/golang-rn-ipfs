@@ -30,14 +30,19 @@ object PeerCounter {
         try {
             val ipfs = IPFSManager.getIPFS()
             ipfs?.let {
-                val jsonList = it.newRequest("swarm/peers")
-                    .withOption("verbose", false)
-                    .withOption("streams", false)
-                    .withOption("latency", false)
-                    .withOption("direction", false)
-                    .sendToJSONList()
-                val peerList = jsonList[0].getJSONArray("Peers")
-                return peerList
+                try {
+                    val jsonList = it.newRequest("swarm/peers")
+                        .withOption("verbose", false)
+                        .withOption("streams", false)
+                        .withOption("latency", false)
+                        .withOption("direction", false)
+                        .sendToJSONList()
+                    System.out.println("PEERS==> "+jsonList)
+                    val peerList = jsonList[0].getJSONArray("Peers")
+                    return peerList
+                }catch (e:Exception){
+                    return JSONArray()
+                }
             }
 
         }catch (e:Exception){

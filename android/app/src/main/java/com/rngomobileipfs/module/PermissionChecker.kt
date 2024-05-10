@@ -22,22 +22,29 @@ object PermissionChecker {
         Manifest.permission.CHANGE_WIFI_MULTICAST_STATE
     )
 
-    private val REQUEST_PERMISSION_CODE = 1001
+    val REQUEST_PERMISSION_CODE = 1001
 
      fun checkPermissions(context: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val neededPermissions = ArrayList<String>()
+         val neededPermissions = ArrayList<String>()
 
-            for (permission in permissions) {
-                if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    neededPermissions.add(permission)
-                }
-            }
+         for (permission in permissions) {
+             if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                 neededPermissions.add(permission)
+             }
+         }
 
-            if (neededPermissions.isNotEmpty()) {
-                ActivityCompat.requestPermissions(context, neededPermissions.toTypedArray(), REQUEST_PERMISSION_CODE)
+         if (neededPermissions.isNotEmpty()) {
+             ActivityCompat.requestPermissions(context, neededPermissions.toTypedArray(), REQUEST_PERMISSION_CODE)
+         }
+     }
+
+    fun arePermissionsGranted(context: Activity): Boolean {
+        for (permission in permissions) {
+            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false
             }
         }
+        return true
     }
 
 }
