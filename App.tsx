@@ -10,6 +10,7 @@ import {
   Modal,
   NativeEventEmitter,
   useColorScheme,
+  TextInput,
 } from 'react-native';
 
 import {Buffer} from 'buffer';
@@ -29,6 +30,9 @@ function App() {
   const [lastProcessedEventIds, setLastProcessedEventIds] = useState(new Map());
   const [modalVisible, setModalVisible] = useState(false);
   const [peers, setPeers] = useState([]);
+  const [peerId, setPeerId] = useState('');
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? '#333' : '#FFF',
@@ -67,6 +71,7 @@ function App() {
 
     IPFSModule.start(id => {
       console.log(`Started with PeerID: ${id}`);
+      setPeerId(id);
       IPFSModule.startSubscription();
     });
 
@@ -169,21 +174,30 @@ function App() {
               {backgroundColor: isDarkMode ? '#555' : '#fff'},
             ]}>
             <Text style={[styles.modalText, textColor]}>Connected Peers:</Text>
+            <TextInput // New TextInput for the search input
+              style={styles.searchInput}
+              value={searchTerm}
+              onChangeText={setSearchTerm}
+              placeholder="Search for a peer id..."
+            />
             <ScrollView style={peerBlockStyle}>
-              {peers.map((peer, index) => {
-                const [peerId, peerAddr] = peer.split(' ===> ');
-                return (
-                  <View key={index} style={peerCardStyle}>
-                    <Text style={[styles.peerText, textColor]}>
-                      Peer ID: {peerId}
-                    </Text>
-                    <Text style={[styles.peerText, textColor]}>
-                      Address: {peerAddr}
-                    </Text>
-                  </View>
-                );
-              })}
+              {peers
+                .filter(peer => peer.toString().includes(searchTerm)) // Filter the peers based on the search term
+                .map((peer, index) => {
+                  const [peerId, peerAddr] = peer.toString().split(' ===> ');
+                  return (
+                    <View key={index} style={peerCardStyle}>
+                      <Text style={[styles.peerText, textColor]}>
+                        Peer ID: {peerId}
+                      </Text>
+                      <Text style={[styles.peerText, textColor]}>
+                        Address: {peerAddr}
+                      </Text>
+                    </View>
+                  );
+                })}
             </ScrollView>
+            <Text>Your peer id = {peerId}</Text>
             <TouchableOpacity
               style={styles.buttonClose}
               onPress={() => setModalVisible(!modalVisible)}>
@@ -260,6 +274,15 @@ const styles = StyleSheet.create({
   },
   peerText: {
     fontSize: 16,
+  },
+  searchInput: {
+    // New style for the search input
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 10,
   },
 });
 
