@@ -22,9 +22,9 @@ const {IPFSModule} = NativeModules;
 import {generateOrder, updateOrder} from './utils';
 import {computeOrderState} from '@oolio-group/order-helper';
 import OrderCard from './orderCard';
-
+let isDarkMode;
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  isDarkMode = useColorScheme() === 'dark';
   const [orders, setOrders] = useState({});
   const [lastProcessedEventIds, setLastProcessedEventIds] = useState(new Map());
   const [modalVisible, setModalVisible] = useState(false);
@@ -38,6 +38,24 @@ function App() {
     color: isDarkMode ? '#FFF' : '#333',
   };
 
+  const peerBlockStyle = {
+    padding: 10,
+  };
+
+  const peerCardStyle = {
+    backgroundColor: isDarkMode ? '#777' : '#eee',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  };
   useEffect(() => {
     const emitter = new NativeEventEmitter(IPFSModule);
     const orderListener = emitter.addListener('ORBITDB', handleReceivedData);
@@ -151,11 +169,21 @@ function App() {
               {backgroundColor: isDarkMode ? '#555' : '#fff'},
             ]}>
             <Text style={[styles.modalText, textColor]}>Connected Peers:</Text>
-            {peers.map((peer, index) => (
-              <Text key={index} style={[styles.modalText, textColor]}>
-                {peer}
-              </Text>
-            ))}
+            <ScrollView style={peerBlockStyle}>
+              {peers.map((peer, index) => {
+                const [peerId, peerAddr] = peer.split(' ===> ');
+                return (
+                  <View key={index} style={peerCardStyle}>
+                    <Text style={[styles.peerText, textColor]}>
+                      Peer ID: {peerId}
+                    </Text>
+                    <Text style={[styles.peerText, textColor]}>
+                      Address: {peerAddr}
+                    </Text>
+                  </View>
+                );
+              })}
+            </ScrollView>
             <TouchableOpacity
               style={styles.buttonClose}
               onPress={() => setModalVisible(!modalVisible)}>
@@ -228,9 +256,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   peersContainer: {
-    backgroundColor: '#FFF',
-    padding: 20,
-    borderRadius: 10,
+    maxHeight: 200, // Adjust this value as needed
   },
   peerText: {
     fontSize: 16,
